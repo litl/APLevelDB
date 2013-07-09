@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		573F1807178C6F8D00E66DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573F1806178C6F8D00E66DED /* Foundation.framework */; };
+		573F182A178C852F00E66DED /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 663190C415DD7A8D001AC21A /* APLevelDB.mm */; };
+		573F182C178C856E00E66DED /* APLevelDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 663190C315DD7A8D001AC21A /* APLevelDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6631909715DD798A001AC21A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631909615DD798A001AC21A /* Cocoa.framework */; };
 		663190A115DD798A001AC21A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6631909F15DD798A001AC21A /* InfoPlist.strings */; };
 		663190AD15DD798A001AC21A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663190AC15DD798A001AC21A /* SenTestingKit.framework */; };
 		663190AE15DD798A001AC21A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631909615DD798A001AC21A /* Cocoa.framework */; };
-		663190B115DD798A001AC21A /* APLevelDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631909315DD798A001AC21A /* APLevelDB.framework */; };
+		663190B115DD798A001AC21A /* APLevelDBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631909315DD798A001AC21A /* APLevelDBFramework.framework */; };
 		663190B715DD798A001AC21A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 663190B515DD798A001AC21A /* InfoPlist.strings */; };
 		663190BA15DD798A001AC21A /* APLevelDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 663190B915DD798A001AC21A /* APLevelDBTests.m */; };
 		663190C515DD7A8D001AC21A /* APLevelDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 663190C315DD7A8D001AC21A /* APLevelDB.h */; };
 		663190C615DD7A8D001AC21A /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 663190C415DD7A8D001AC21A /* APLevelDB.mm */; };
-		6698E04815F82D3000B74390 /* APLevelDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6631909315DD798A001AC21A /* APLevelDB.framework */; };
+		6698E04815F82D3000B74390 /* APLevelDBFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6631909315DD798A001AC21A /* APLevelDBFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +33,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		573F1803178C6F8C00E66DED /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6698E04715F82D2300B74390 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6698E04815F82D3000B74390 /* APLevelDB.framework in CopyFiles */,
+				6698E04815F82D3000B74390 /* APLevelDBFramework.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6631909315DD798A001AC21A /* APLevelDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APLevelDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		573F1805178C6F8C00E66DED /* libAPLevelDB.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAPLevelDB.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		573F1806178C6F8D00E66DED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6631909315DD798A001AC21A /* APLevelDBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APLevelDBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6631909615DD798A001AC21A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6631909915DD798A001AC21A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6631909A15DD798A001AC21A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -62,6 +76,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		573F1802178C6F8C00E66DED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				573F1807178C6F8D00E66DED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6631908F15DD798A001AC21A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,7 +98,7 @@
 			files = (
 				663190AD15DD798A001AC21A /* SenTestingKit.framework in Frameworks */,
 				663190AE15DD798A001AC21A /* Cocoa.framework in Frameworks */,
-				663190B115DD798A001AC21A /* APLevelDB.framework in Frameworks */,
+				663190B115DD798A001AC21A /* APLevelDBFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +119,9 @@
 		6631909415DD798A001AC21A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6631909315DD798A001AC21A /* APLevelDB.framework */,
+				6631909315DD798A001AC21A /* APLevelDBFramework.framework */,
 				663190AB15DD798A001AC21A /* APLevelDBTests.octest */,
+				573F1805178C6F8C00E66DED /* libAPLevelDB.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +131,7 @@
 			children = (
 				6631909615DD798A001AC21A /* Cocoa.framework */,
 				663190AC15DD798A001AC21A /* SenTestingKit.framework */,
+				573F1806178C6F8D00E66DED /* Foundation.framework */,
 				6631909815DD798A001AC21A /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -164,6 +188,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		573F182B178C856000E66DED /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				573F182C178C856E00E66DED /* APLevelDB.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6631909015DD798A001AC21A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,9 +207,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6631909215DD798A001AC21A /* APLevelDB */ = {
+		573F1804178C6F8C00E66DED /* APLevelDB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 663190BD15DD798A001AC21A /* Build configuration list for PBXNativeTarget "APLevelDB" */;
+			buildConfigurationList = 573F1811178C6F8D00E66DED /* Build configuration list for PBXNativeTarget "APLevelDB" */;
+			buildPhases = (
+				573F1801178C6F8C00E66DED /* Sources */,
+				573F1802178C6F8C00E66DED /* Frameworks */,
+				573F182B178C856000E66DED /* Headers */,
+				573F1803178C6F8C00E66DED /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = APLevelDB;
+			productName = APLevelDBiOS;
+			productReference = 573F1805178C6F8C00E66DED /* libAPLevelDB.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6631909215DD798A001AC21A /* APLevelDBFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 663190BD15DD798A001AC21A /* Build configuration list for PBXNativeTarget "APLevelDBFramework" */;
 			buildPhases = (
 				6631908E15DD798A001AC21A /* Sources */,
 				6631908F15DD798A001AC21A /* Frameworks */,
@@ -188,9 +238,9 @@
 			);
 			dependencies = (
 			);
-			name = APLevelDB;
+			name = APLevelDBFramework;
 			productName = APLevelDB;
-			productReference = 6631909315DD798A001AC21A /* APLevelDB.framework */;
+			productReference = 6631909315DD798A001AC21A /* APLevelDBFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		663190AA15DD798A001AC21A /* APLevelDBTests */ = {
@@ -234,8 +284,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6631909215DD798A001AC21A /* APLevelDB */,
+				6631909215DD798A001AC21A /* APLevelDBFramework */,
 				663190AA15DD798A001AC21A /* APLevelDBTests */,
+				573F1804178C6F8C00E66DED /* APLevelDB */,
 			);
 		};
 /* End PBXProject section */
@@ -276,6 +327,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		573F1801178C6F8C00E66DED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				573F182A178C852F00E66DED /* APLevelDB.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6631908E15DD798A001AC21A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,7 +356,7 @@
 /* Begin PBXTargetDependency section */
 		663190B015DD798A001AC21A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6631909215DD798A001AC21A /* APLevelDB */;
+			target = 6631909215DD798A001AC21A /* APLevelDBFramework */;
 			targetProxy = 663190AF15DD798A001AC21A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -322,6 +381,73 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		573F180F178C6F8D00E66DED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/APLevelDB.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = leveldb/include;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				KEEP_PRIVATE_EXTERNS = NO;
+				LIBRARY_SEARCH_PATHS = leveldb;
+				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lleveldb",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
+			};
+			name = Debug;
+		};
+		573F1810178C6F8D00E66DED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/APLevelDB.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = leveldb/include;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				KEEP_PRIVATE_EXTERNS = NO;
+				LIBRARY_SEARCH_PATHS = leveldb;
+				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lleveldb",
+					"-all_load",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
+			};
+			name = Release;
+		};
 		663190BB15DD798A001AC21A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +566,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		573F1811178C6F8D00E66DED /* Build configuration list for PBXNativeTarget "APLevelDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				573F180F178C6F8D00E66DED /* Debug */,
+				573F1810178C6F8D00E66DED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6631908C15DD798A001AC21A /* Build configuration list for PBXProject "APLevelDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -449,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		663190BD15DD798A001AC21A /* Build configuration list for PBXNativeTarget "APLevelDB" */ = {
+		663190BD15DD798A001AC21A /* Build configuration list for PBXNativeTarget "APLevelDBFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				663190BE15DD798A001AC21A /* Debug */,
