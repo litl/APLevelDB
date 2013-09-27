@@ -67,6 +67,15 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 }
 @end
 
+@interface APLevelDBSnapshot () {
+    const leveldb::Snapshot *_snap;
+    leveldb::DB *_db;
+}
+
+- (id)initWithLevelDB:(APLevelDB *)db;
+- (const leveldb::Snapshot *)internalSnapshot;
+
+@end
 
 #pragma mark - APLevelDB
 
@@ -96,9 +105,9 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 	if ((self = [super init]))
 	{
 		_path = path;
-		
+
 		leveldb::Options options = [[self class] defaultCreateOptions];
-		
+
 		leveldb::Status status = leveldb::DB::Open(options, [_path UTF8String], &_db);
 
 		if (!status.ok())
@@ -112,7 +121,7 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 			}
 			return nil;
 		}
-		
+
 		_writeOptions.sync = false;
 	}
 	return self;
@@ -141,7 +150,7 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 
 - (BOOL)setString:(NSString *)str forKey:(NSString *)key
 {
-	// This could have been based on 
+	// This could have been based on
 	leveldb::Slice keySlice = SliceFromString(key);
 	leveldb::Slice valueSlice = SliceFromString(str);
 	leveldb::Status status = _db->Put(_writeOptions, keySlice, valueSlice);
@@ -150,9 +159,18 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 
 - (NSData *)dataForKey:(NSString *)key
 {
+    return [self dataForKey:key withSnapshot:nil];
+}
+
+- (NSData *)dataForKey:(NSString *)key withSnapshot:(APLevelDBSnapshot *)snapshot
+{
+    leveldb::ReadOptions options = leveldb::ReadOptions();
+    if (snapshot) {
+        options.snapshot = [snapshot internalSnapshot];
+    }
 	leveldb::Slice keySlice = SliceFromString(key);
 	std::string valueCPPString;
-	leveldb::Status status = _db->Get(_readOptions, keySlice, &valueCPPString);
+	leveldb::Status status = _db->Get(options, keySlice, &valueCPPString);
 
 	if (!status.ok())
 		return nil;
@@ -162,10 +180,19 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 
 - (NSString *)stringForKey:(NSString *)key
 {
-	leveldb::Slice keySlice = SliceFromString(key);
+    return [self stringForKey:key withSnapshot:nil];
+}
+
+- (NSString *)stringForKey:(NSString *)key withSnapshot:(APLevelDBSnapshot *)snapshot
+{
+    leveldb::ReadOptions options = leveldb::ReadOptions();
+    if (snapshot) {
+        options.snapshot = [snapshot internalSnapshot];
+    }
+    leveldb::Slice keySlice = SliceFromString(key);
 	std::string valueCPPString;
-	leveldb::Status status = _db->Get(_readOptions, keySlice, &valueCPPString);
-	
+	leveldb::Status status = _db->Get(options, keySlice, &valueCPPString);
+
 	// We assume (dangerously?) UTF-8 string encoding:
 	if (!status.ok())
 		return nil;
@@ -201,7 +228,7 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 		if (stop)
 			break;
 	}
-	
+
 	delete iter;
 }
 
@@ -216,7 +243,7 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 		if (stop)
 			break;
 	}
-	
+
 	delete iter;
 }
 
@@ -238,7 +265,7 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 	{
 		[NSException raise:NSInvalidArgumentException format:@"key must be NSString or NSData"];
     }
-	
+
 	if ([thing respondsToSelector:@selector(componentsSeparatedByString:)])
 		[self setString:thing forKey:(NSString *)key];
 	else if ([thing respondsToSelector:@selector(subdataWithRange:)])
@@ -259,12 +286,19 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 {
 	if (!theBatch)
 		return NO;
-	
+
 	APLevelDBWriteBatch *batch = theBatch;
-	
+
 	leveldb::Status status;
 	status = _db->Write(_writeOptions, &batch->_batch);
 	return (status.ok() == true);
+}
+
+#pragma mark - Snapshotting
+
+- (APLevelDBSnapshot *)snapshot
+{
+    return [[APLevelDBSnapshot alloc] initWithLevelDB:self];
 }
 
 @end
@@ -289,9 +323,18 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 
 - (id)initWithLevelDB:(APLevelDB *)db
 {
+    return [self initWithLevelDB:db snapshot:nil];
+}
+
+- (id)initWithLevelDB:(APLevelDB *)db snapshot:(APLevelDBSnapshot *)snapshot
+{
 	if ((self = [super init]))
 	{
-		_iter = db.db->NewIterator(leveldb::ReadOptions());
+        leveldb::ReadOptions options = leveldb::ReadOptions();
+        if (snapshot) {
+            options.snapshot = [snapshot internalSnapshot];
+        }
+		_iter = db.db->NewIterator(options);
 		_iter->SeekToFirst();
 		if (!_iter->Valid())
 			return nil;
@@ -356,6 +399,47 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 		return nil;
 	leveldb::Slice value = _iter->value();
 	return [NSData dataWithBytes:value.data() length:value.size()];
+}
+
+@end
+
+
+#pragma mark - APLevelDBSnapshot
+
+@implementation APLevelDBSnapshot
+
++ (id)snapshotWithLevelDB:(APLevelDB *)db
+{
+    APLevelDBSnapshot *snap = [[[self class] alloc] initWithLevelDB:db];
+    return snap;
+}
+
+- (id)initWithLevelDB:(APLevelDB *)aDb
+{
+    if ((self = [super init]))
+    {
+        _db = aDb.db;
+        _snap = _db->GetSnapshot();
+    }
+    return self;
+}
+
+- (id)init
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (void)dealloc
+{
+    _db->ReleaseSnapshot(_snap);
+    _db = NULL;
+    _snap = NULL;
+}
+
+- (const leveldb::Snapshot *)internalSnapshot
+{
+    return _snap;
 }
 
 @end

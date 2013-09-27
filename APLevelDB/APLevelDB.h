@@ -27,6 +27,7 @@
 extern NSString * const APLevelDBErrorDomain;
 
 @class APLevelDBIterator;
+@class APLevelDBSnapshot;
 @protocol APLevelDBWriteBatch;
 
 @interface APLevelDB : NSObject
@@ -39,7 +40,9 @@ extern NSString * const APLevelDBErrorDomain;
 - (BOOL)setString:(NSString *)str forKey:(NSString *)key;
 
 - (NSData *)dataForKey:(NSString *)key;
+- (NSData *)dataForKey:(NSString *)key withSnapshot:(APLevelDBSnapshot *)snapshot;
 - (NSString *)stringForKey:(NSString *)key;
+- (NSString *)stringForKey:(NSString *)key withSnapshot:(APLevelDBSnapshot *)snapshot;
 
 - (BOOL)removeKey:(NSString *)key;
 
@@ -63,6 +66,9 @@ extern NSString * const APLevelDBErrorDomain;
 - (id<APLevelDBWriteBatch>)beginWriteBatch;
 - (BOOL)commitWriteBatch:(id<APLevelDBWriteBatch>)batch;
 
+// Snapshot support:
+- (APLevelDBSnapshot *)snapshot;
+
 @end
 
 
@@ -71,6 +77,7 @@ extern NSString * const APLevelDBErrorDomain;
 + (id)iteratorWithLevelDB:(APLevelDB *)db;
 
 // Designated initializer:
+- (id)initWithLevelDB:(APLevelDB *)db snapshot:(APLevelDBSnapshot *)snapshot;
 - (id)initWithLevelDB:(APLevelDB *)db;
 
 - (BOOL)seekToKey:(NSString *)key;
@@ -81,6 +88,11 @@ extern NSString * const APLevelDBErrorDomain;
 
 @end
 
+@interface APLevelDBSnapshot : NSObject
+
++ (id)snapshotWithLevelDB:(APLevelDB *)db;
+
+@end
 
 @protocol APLevelDBWriteBatch <NSObject>
 
