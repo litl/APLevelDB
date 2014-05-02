@@ -371,6 +371,18 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 	_iter->SeekToLast();
 }
 
+- (void)next
+{
+    // Iterate without getting the key
+    _iter->Next();
+}
+
+- (void)prev
+{
+    // Iterate without getting the key;
+    _iter->Prev();
+}
+
 - (NSString *)nextKey
 {
 	_iter->Next();

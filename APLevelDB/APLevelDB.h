@@ -83,6 +83,8 @@ extern NSString * const APLevelDBErrorDomain;
 - (BOOL)seekToKey:(NSString *)key;
 - (NSString *)nextKey;
 - (NSString *)prevKey;
+- (void)next;
+- (void)prev;
 - (NSString *)key;
 - (NSString *)valueAsString;
 - (NSData *)valueAsData;
