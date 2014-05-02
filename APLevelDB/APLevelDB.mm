@@ -377,6 +377,12 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 	return [self key];
 }
 
+- (NSString *)prevKey
+{
+    _iter->Prev();
+    return [self key];
+}
+
 - (NSString *)key
 {
 	if (_iter->Valid() == false)
