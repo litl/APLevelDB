@@ -269,6 +269,7 @@
 		6631908915DD798A001AC21A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Adam Preble";
 			};
@@ -399,11 +400,7 @@
 				LIBRARY_SEARCH_PATHS = leveldb;
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lleveldb",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-lleveldb";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
@@ -431,11 +428,7 @@
 				LIBRARY_SEARCH_PATHS = leveldb;
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lleveldb",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-lleveldb";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
