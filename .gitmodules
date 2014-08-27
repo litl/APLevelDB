@@ -1,3 +1,3 @@
-[submodule "leveldb"]
+[submodule "leveldb-github"]
 	path = leveldb
-	url = https://code.google.com/p/leveldb/
+	url = https://github.com/google/leveldb.git
