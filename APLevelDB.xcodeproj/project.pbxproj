@@ -20,6 +20,7 @@
 		663190C515DD7A8D001AC21A /* APLevelDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 663190C315DD7A8D001AC21A /* APLevelDB.h */; };
 		663190C615DD7A8D001AC21A /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 663190C415DD7A8D001AC21A /* APLevelDB.mm */; };
 		6698E04815F82D3000B74390 /* APLevelDBFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6631909315DD798A001AC21A /* APLevelDBFramework.framework */; };
+		6F26BDA619AE725900516C59 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F26BDA519AE725900516C59 /* libleveldb.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		663190C315DD7A8D001AC21A /* APLevelDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLevelDB.h; sourceTree = "<group>"; };
 		663190C415DD7A8D001AC21A /* APLevelDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APLevelDB.mm; sourceTree = "<group>"; };
 		663190C815DD7CE0001AC21A /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		6F26BDA519AE725900516C59 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libleveldb.a; path = leveldb/libleveldb.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F26BDA619AE725900516C59 /* libleveldb.a in Frameworks */,
 				573F1807178C6F8D00E66DED /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +132,7 @@
 		6631909515DD798A001AC21A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F26BDA519AE725900516C59 /* libleveldb.a */,
 				6631909615DD798A001AC21A /* Cocoa.framework */,
 				663190AC15DD798A001AC21A /* SenTestingKit.framework */,
 				573F1806178C6F8D00E66DED /* Foundation.framework */,
@@ -261,7 +265,7 @@
 			name = APLevelDBTests;
 			productName = APLevelDBTests;
 			productReference = 663190AB15DD798A001AC21A /* APLevelDBTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -397,10 +401,9 @@
 				HEADER_SEARCH_PATHS = leveldb/include;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KEEP_PRIVATE_EXTERNS = NO;
-				LIBRARY_SEARCH_PATHS = leveldb;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/leveldb";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-lleveldb";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
@@ -425,10 +428,9 @@
 				HEADER_SEARCH_PATHS = leveldb/include;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KEEP_PRIVATE_EXTERNS = NO;
-				LIBRARY_SEARCH_PATHS = leveldb;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/leveldb";
 				MACH_O_TYPE = staticlib;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-lleveldb";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PUBLIC_HEADERS_FOLDER_PATH)/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
@@ -500,7 +502,6 @@
 				HEADER_SEARCH_PATHS = leveldb/include;
 				INFOPLIST_FILE = "APLevelDB/APLevelDB-Info.plist";
 				LIBRARY_SEARCH_PATHS = leveldb;
-				OTHER_LDFLAGS = "-lleveldb";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -518,7 +519,6 @@
 				HEADER_SEARCH_PATHS = leveldb/include;
 				INFOPLIST_FILE = "APLevelDB/APLevelDB-Info.plist";
 				LIBRARY_SEARCH_PATHS = leveldb;
-				OTHER_LDFLAGS = "-lleveldb";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
