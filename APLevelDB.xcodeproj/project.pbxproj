@@ -409,7 +409,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/APLevelDB;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 armv7s i386 arm64 x86_64";
 			};
 			name = Debug;
 		};
@@ -437,7 +437,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 armv7s i386 arm64 x86_64";
 			};
 			name = Release;
 		};
