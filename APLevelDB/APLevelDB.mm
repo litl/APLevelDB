@@ -413,10 +413,15 @@ NSString * const APLevelDBErrorDomain = @"APLevelDBErrorDomain";
 
 - (NSData *)valueAsData
 {
-	if (_iter->Valid() == false)
-		return nil;
-	leveldb::Slice value = _iter->value();
-	return [NSData dataWithBytes:value.data() length:value.size()];
+    return [self newValueAsData];
+}
+
+- (NSData *)newValueAsData
+{
+    if (_iter->Valid() == false)
+        return nil;
+    leveldb::Slice value = _iter->value();
+    return [[NSData alloc] initWithBytes:value.data() length:value.size()];
 }
 
 @end

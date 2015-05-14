@@ -88,6 +88,7 @@ extern NSString * const APLevelDBErrorDomain;
 - (NSString *)key;
 - (NSString *)valueAsString;
 - (NSData *)valueAsData;
+- (NSData *)newValueAsData __attribute((ns_returns_retained));
 
 @end
 
